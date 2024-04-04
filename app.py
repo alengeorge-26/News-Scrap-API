@@ -20,19 +20,21 @@ def scrap():
 
     paragraphs = toi_article.text.split("\n")
 
-    chars_to_remove = ['/', '"']
+    chars_to_remove = ['/','"','(' ,')','|']
 
     cleaned_text_list = []
+    new_array = []
     for string in paragraphs:
         for char in chars_to_remove:
             string = string.replace(char, "")
         cleaned_text_list.append(string)
 
     for string in cleaned_text_list:
-            if string=="":
-                cleaned_text_list.remove(string)
+        if string=="":
+            continue
+        new_array.append(string)
 
-    return jsonify(cleaned_text_list)
+    return jsonify(new_array)
 
 if __name__ == '__main__':
     app.run(debug=True)
